@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CWAI — Codified Wisdom AI | Capture. Organize. Replay.</title>
+<meta name="description" content="CWAI captures expert knowledge through voice, uses AI to structure it into professional step-by-step profiles, and makes it available to your entire team. Stop repeating yourself.">
+<meta property="og:title" content="CWAI — Codified Wisdom AI">
+<meta property="og:description" content="Every profession has a master whose knowledge lives in their head. CWAI ensures it doesn't leave with them.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cwai.app">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#060B16;--bg2:#0A1122;--card:#0F1729;--border:#1a2744;
+  --teal:#0E7C86;--teal-l:#14B8A6;--coral:#F97316;--coral-d:#EA580C;
+  --blue:#3B82F6;--emerald:#10B981;--purple:#8B5CF6;--gold:#FBBF24;
+  --white:#F1F5F9;--slate:#94A3B8;--muted:#4B5E7A;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'DM Sans',system-ui,sans-serif;overflow-x:hidden}
+a{color:var(--teal-l);text-decoration:none}
+
+/* Grain overlay */
+body::after{content:"";position:fixed;top:0;left:0;width:100%;height:100%;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:9999;opacity:0.4}
+
+.container{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(6,11,22,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(26,39,68,0.5)}
+.nav-inner{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-mark{width:32px;height:32px;border-radius:8px;
+  background:linear-gradient(135deg,var(--coral),var(--gold));
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:900;color:#fff;letter-spacing:-0.5px;font-family:'JetBrains Mono'}
+.logo-text{font-family:'DM Serif Display';font-size:18px;color:var(--white)}
+.logo-sub{font-size:9px;font-weight:700;letter-spacing:3px;color:var(--muted);text-transform:uppercase}
+.nav-cta{padding:8px 20px;border-radius:8px;background:var(--coral);color:#fff;
+  font-weight:700;font-size:13px;cursor:pointer;border:none;transition:all 0.2s}
+.nav-cta:hover{background:var(--coral-d);transform:translateY(-1px)}
+
+/* HERO */
+.hero{padding:140px 0 80px;text-align:center;position:relative}
+.hero::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:800px;height:800px;background:radial-gradient(circle,rgba(14,124,134,0.08) 0%,transparent 70%);pointer-events:none}
+.hero-tag{display:inline-block;padding:4px 14px;border-radius:20px;
+  background:rgba(14,124,134,0.1);border:1px solid rgba(14,124,134,0.25);
+  font-size:12px;font-weight:700;color:var(--teal-l);letter-spacing:2px;margin-bottom:24px}
+.hero h1{font-family:'DM Serif Display';font-size:clamp(36px,6vw,64px);line-height:1.1;
+  margin-bottom:20px;color:var(--white)}
+.hero h1 em{font-style:normal;color:var(--coral)}
+.hero p{font-size:18px;color:var(--slate);max-width:580px;margin:0 auto 36px;line-height:1.6}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:10px;
+  background:linear-gradient(135deg,var(--coral),var(--coral-d));color:#fff;
+  font-weight:700;font-size:16px;cursor:pointer;border:none;transition:all 0.3s;box-shadow:0 8px 30px rgba(249,115,22,0.25)}
+.hero-cta:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(249,115,22,0.35)}
+.hero-sub{margin-top:16px;font-size:13px;color:var(--muted)}
+
+/* PAIN */
+.pain{padding:60px 0;text-align:center}
+.pain-quote{font-family:'DM Serif Display';font-size:clamp(24px,4vw,36px);color:var(--white);
+  max-width:700px;margin:0 auto 12px;line-height:1.3}
+.pain-quote em{font-style:normal;color:var(--coral)}
+.pain-attr{font-size:14px;color:var(--muted);margin-bottom:40px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:800px;margin:0 auto}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px 16px}
+.stat-num{font-family:'JetBrains Mono';font-size:32px;font-weight:800;color:var(--coral);margin-bottom:4px}
+.stat-label{font-size:13px;color:var(--slate);line-height:1.4}
+
+/* HOW IT WORKS */
+.how{padding:80px 0}
+.section-tag{font-size:11px;font-weight:700;letter-spacing:3px;color:var(--teal-l);text-transform:uppercase;margin-bottom:12px}
+.section-title{font-family:'DM Serif Display';font-size:clamp(28px,4vw,42px);margin-bottom:40px;color:var(--white)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.step{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px 24px;position:relative;overflow:hidden;transition:border-color 0.3s}
+.step:hover{border-color:var(--teal)}
+.step::before{content:"";position:absolute;top:0;left:0;right:0;height:3px}
+.step:nth-child(1)::before{background:linear-gradient(90deg,var(--coral),transparent)}
+.step:nth-child(2)::before{background:linear-gradient(90deg,var(--blue),transparent)}
+.step:nth-child(3)::before{background:linear-gradient(90deg,var(--emerald),transparent)}
+.step-num{font-family:'JetBrains Mono';font-size:36px;font-weight:800;margin-bottom:12px}
+.step:nth-child(1) .step-num{color:var(--coral)}
+.step:nth-child(2) .step-num{color:var(--blue)}
+.step:nth-child(3) .step-num{color:var(--emerald)}
+.step h3{font-size:18px;font-weight:800;margin-bottom:8px}
+.step p{font-size:14px;color:var(--slate);line-height:1.6}
+
+/* WHO */
+.who{padding:60px 0}
+.trades{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:24px}
+.trade{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;transition:border-color 0.2s}
+.trade:hover{border-color:var(--teal)}
+.trade-icon{font-size:28px;margin-bottom:6px}
+.trade-name{font-size:13px;font-weight:700;color:var(--white)}
+
+/* PRICING */
+.pricing{padding:80px 0}
+.tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px}
+.tier{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px 20px;position:relative;transition:all 0.3s}
+.tier:hover{border-color:var(--teal);transform:translateY(-4px)}
+.tier.featured{border-color:var(--coral);background:linear-gradient(180deg,rgba(249,115,22,0.06),var(--card))}
+.tier.featured::before{content:"MOST POPULAR";position:absolute;top:-10px;left:50%;transform:translateX(-50%);
+  background:var(--coral);color:#fff;font-size:9px;font-weight:800;letter-spacing:2px;
+  padding:3px 12px;border-radius:10px}
+.tier-name{font-size:13px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px}
+.tier-price{font-family:'DM Serif Display';font-size:36px;color:var(--white);margin-bottom:2px}
+.tier-price span{font-size:14px;color:var(--muted);font-family:'DM Sans'}
+.tier-desc{font-size:12px;color:var(--muted);margin-bottom:16px;min-height:36px}
+.tier-features{list-style:none;margin-bottom:20px}
+.tier-features li{font-size:13px;color:var(--slate);padding:5px 0;border-bottom:1px solid rgba(26,39,68,0.5);display:flex;align-items:center;gap:6px}
+.tier-features li::before{content:"✓";color:var(--teal-l);font-weight:700;font-size:12px}
+.tier-btn{display:block;width:100%;padding:10px;border-radius:8px;border:1px solid var(--border);
+  background:transparent;color:var(--white);font-weight:700;font-size:13px;cursor:pointer;text-align:center;transition:all 0.2s}
+.tier-btn:hover{background:var(--teal);border-color:var(--teal)}
+.tier.featured .tier-btn{background:var(--coral);border-color:var(--coral)}
+.tier.featured .tier-btn:hover{background:var(--coral-d)}
+.tier-peruser{font-size:11px;color:var(--teal-l);font-weight:600;margin-top:8px;text-align:center}
+
+/* CTA */
+.cta-section{padding:80px 0;text-align:center}
+.cta-box{background:linear-gradient(135deg,rgba(14,124,134,0.08),rgba(249,115,22,0.06));
+  border:1px solid rgba(14,124,134,0.2);border-radius:20px;padding:48px 40px;max-width:640px;margin:0 auto}
+.cta-box h2{font-family:'DM Serif Display';font-size:32px;margin-bottom:12px}
+.cta-box p{font-size:15px;color:var(--slate);margin-bottom:24px;line-height:1.6}
+.email-form{display:flex;gap:10px;max-width:440px;margin:0 auto}
+.email-form input{flex:1;padding:12px 16px;border-radius:8px;border:1px solid var(--border);
+  background:var(--card);color:var(--white);font-size:14px;font-family:'DM Sans';outline:none}
+.email-form input:focus{border-color:var(--teal)}
+.email-form input::placeholder{color:var(--muted)}
+.email-form button{padding:12px 24px;border-radius:8px;background:var(--coral);color:#fff;
+  font-weight:700;font-size:14px;border:none;cursor:pointer;white-space:nowrap;transition:all 0.2s}
+.email-form button:hover{background:var(--coral-d)}
+.form-note{font-size:11px;color:var(--muted);margin-top:10px}
+#success-msg{display:none;color:var(--emerald);font-weight:600;font-size:14px;margin-top:12px}
+
+/* FOOTER */
+footer{padding:40px 0;border-top:1px solid var(--border);text-align:center}
+.footer-brand{font-family:'DM Serif Display';font-size:16px;margin-bottom:4px}
+.footer-tagline{font-size:12px;color:var(--muted);margin-bottom:8px;font-style:italic}
+.footer-links{font-size:11px;color:var(--muted);letter-spacing:1px}
+.footer-moses{font-size:12px;color:var(--muted);font-style:italic;margin-top:16px;font-family:'DM Serif Display'}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .stats{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .tiers{grid-template-columns:1fr;max-width:340px;margin-left:auto;margin-right:auto}
+  .trades{grid-template-columns:repeat(3,1fr)}
+  .email-form{flex-direction:column}
+  .hero h1{font-size:32px}
+}
+@media(max-width:480px){
+  .trades{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-tag,.hero h1,.hero p,.hero-cta{animation:fadeUp 0.6s ease both}
+.hero h1{animation-delay:0.1s}
+.hero p{animation-delay:0.2s}
+.hero-cta{animation-delay:0.3s}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">
+      <div class="logo-mark">CW</div>
+      <div>
+        <div class="logo-text">CWAI</div>
+        <div class="logo-sub">Codified Wisdom</div>
+      </div>
+    </div>
+    <a href="#early-access"><button class="nav-cta">Get Early Access</button></a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-tag">CAPTURE &middot; ORGANIZE &middot; REPLAY</div>
+    <h1>Stop saying<br><em>&ldquo;I already showed you this.&rdquo;</em></h1>
+    <p>CWAI captures expert knowledge through voice, uses AI to organize it into professional step-by-step profiles, and lets your team replay it on the job. One recording. Permanent wisdom.</p>
+    <a href="#early-access"><button class="hero-cta">Join the Waitlist &rarr;</button></a>
+    <div class="hero-sub">Launching Q3 2026 &middot; Free tier available at launch</div>
+  </div>
+</section>
+
+<!-- PAIN POINT -->
+<section class="pain">
+  <div class="container">
+    <div class="pain-quote">&ldquo;Every time a senior tech walks out the door, <em>$200K in knowledge</em> walks out with them.&rdquo;</div>
+    <div class="pain-attr">The problem nobody's solved &mdash; until now.</div>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">11.5M</div>
+        <div class="stat-label">Skilled workers in the US facing a generational knowledge crisis</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">70%</div>
+        <div class="stat-label">Of institutional knowledge is undocumented &mdash; it lives only in people's heads</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">$200K+</div>
+        <div class="stat-label">In tribal knowledge lost every time a senior professional leaves</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="container">
+    <div class="section-tag">How CWAI Works</div>
+    <div class="section-title">Three steps. Your master's lifetime of knowledge &mdash; preserved.</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Capture</h3>
+        <p>Hit record on your iPhone. Narrate while you work or debrief after. The AI listens for procedures, parts, specs, warnings, and timing &mdash; everything that makes you the expert.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Organize</h3>
+        <p>AI transcribes the recording, extracts each step in sequence, identifies parts with exact specifications, and flags safety-critical warnings. Raw voice becomes a structured Job Profile.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Replay</h3>
+        <p>Any team member opens the profile and follows it step-by-step &mdash; with the master's original voice attached to each phase. The map replaces memorization. The knowledge stays.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="who">
+  <div class="container">
+    <div class="section-tag">Built For Every Expert</div>
+    <div class="section-title">If you have knowledge worth preserving, CWAI is for you.</div>
+    <div class="trades">
+      <div class="trade"><div class="trade-icon">🔧</div><div class="trade-name">Plumbing</div></div>
+      <div class="trade"><div class="trade-icon">⚡</div><div class="trade-name">Electrical</div></div>
+      <div class="trade"><div class="trade-icon">❄️</div><div class="trade-name">HVAC</div></div>
+      <div class="trade"><div class="trade-icon">🦷</div><div class="trade-name">Dental</div></div>
+      <div class="trade"><div class="trade-icon">🍳</div><div class="trade-name">Restaurants</div></div>
+      <div class="trade"><div class="trade-icon">🏥</div><div class="trade-name">Healthcare</div></div>
+      <div class="trade"><div class="trade-icon">🔩</div><div class="trade-name">Manufacturing</div></div>
+      <div class="trade"><div class="trade-icon">🐾</div><div class="trade-name">Veterinary</div></div>
+      <div class="trade"><div class="trade-icon">🚗</div><div class="trade-name">Automotive</div></div>
+      <div class="trade"><div class="trade-icon">💇</div><div class="trade-name">Salon & Spa</div></div>
+      <div class="trade"><div class="trade-icon">🏗️</div><div class="trade-name">Construction</div></div>
+      <div class="trade"><div class="trade-icon">📐</div><div class="trade-name">Architecture</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="section-tag">Simple Pricing</div>
+    <div class="section-title">Start free. Scale when you're ready.</div>
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-name">Free</div>
+        <div class="tier-price">$0<span>/mo</span></div>
+        <div class="tier-desc">Try it. See the magic.</div>
+        <ul class="tier-features">
+          <li>5 Job Profiles</li>
+          <li>1 user</li>
+          <li>30 min voice/month</li>
+          <li>Step-by-step replay</li>
+        </ul>
+        <button class="tier-btn" onclick="document.getElementById('early-access').scrollIntoView({behavior:'smooth'})">Join Waitlist</button>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Pro</div>
+        <div class="tier-price">$29<span>/mo</span></div>
+        <div class="tier-desc">For the owner who's done repeating themselves.</div>
+        <ul class="tier-features">
+          <li>Unlimited profiles</li>
+          <li>3 users</li>
+          <li>300 min voice/month</li>
+          <li>Basic analytics</li>
+        </ul>
+        <button class="tier-btn" onclick="document.getElementById('early-access').scrollIntoView({behavior:'smooth'})">Join Waitlist</button>
+      </div>
+      <div class="tier featured">
+        <div class="tier-name">Team</div>
+        <div class="tier-price">$199<span>/mo</span></div>
+        <div class="tier-desc">Your entire team, one source of truth.</div>
+        <ul class="tier-features">
+          <li>Unlimited profiles</li>
+          <li>15 users</li>
+          <li>Team sharing & search</li>
+          <li>Full analytics dashboard</li>
+          <li>Parts integration</li>
+          <li>Priority support</li>
+        </ul>
+        <button class="tier-btn" onclick="document.getElementById('early-access').scrollIntoView({behavior:'smooth'})">Join Waitlist</button>
+        <div class="tier-peruser">$13.27/user &mdash; less than lunch</div>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Enterprise</div>
+        <div class="tier-price">$499<span>/mo</span></div>
+        <div class="tier-desc">Multi-location. Insurance-ready.</div>
+        <ul class="tier-features">
+          <li>Everything in Team</li>
+          <li>Unlimited users</li>
+          <li>Insurance compliance reports</li>
+          <li>API access</li>
+          <li>Named account rep</li>
+        </ul>
+        <button class="tier-btn" onclick="document.getElementById('early-access').scrollIntoView({behavior:'smooth'})">Contact Us</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / EARLY ACCESS -->
+<section class="cta-section" id="early-access">
+  <div class="container">
+    <div class="cta-box">
+      <h2>Get early access to CWAI</h2>
+      <p>We're launching with a small group of trade shops, dental practices, and professional teams in Q3 2026. Join the waitlist to be first in line.</p>
+      <form class="email-form" id="waitlist-form" onsubmit="handleSubmit(event)">
+        <input type="email" id="email-input" placeholder="you@yourcompany.com" required>
+        <button type="submit">Join Waitlist</button>
+      </form>
+      <div class="form-note">No spam. No sales calls. Just early access when we launch.</div>
+      <div id="success-msg">You're on the list. We'll be in touch.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-brand">Codified Wisdom &mdash; AI</div>
+    <div class="footer-tagline">Capture. Organize. Replay.</div>
+    <div class="footer-links">CWAI &middot; cwai.app &middot; &copy; 2026 Codified Wisdom LLC</div>
+    <div class="footer-moses">&ldquo;Moses didn't just lead. He made sure the knowledge survived him.&rdquo;</div>
+  </div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const email = document.getElementById('email-input').value;
+  // For now, store in localStorage as a simple waitlist
+  // Replace with Mailchimp, ConvertKit, or Supabase when ready
+  const waitlist = JSON.parse(localStorage.getItem('cwai_waitlist') || '[]');
+  waitlist.push({ email, timestamp: new Date().toISOString() });
+  localStorage.setItem('cwai_waitlist', JSON.stringify(waitlist));
+  
+  document.getElementById('waitlist-form').style.display = 'none';
+  document.getElementById('success-msg').style.display = 'block';
+  
+  // Optional: send to a webhook (uncomment and replace URL when ready)
+  // fetch('YOUR_WEBHOOK_URL', {
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify({ email, source: 'cwai.app' })
+  // }).catch(() => {});
+}
+</script>
+</body>
+</html>
